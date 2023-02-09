@@ -5,18 +5,18 @@
     },
     {
         "ParameterKey": "GitHubBranch",
-        "ParameterValue": "master"
+        "ParameterValue": "main"
       },
       {
         "ParameterKey": "GitHubToken",
-        "ParameterValue": ""
+        "ParameterValue": "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"
       },
       {
         "ParameterKey": "GitHubUser",
-        "ParameterValue": ""
+        "ParameterValue": "ceaustin117"
       },
       {
         "ParameterKey": "MlOpsStepFunctionArn",
-        "ParameterValue": ""
+        "ParameterValue": "arn:aws:states:us-east-2:026569106715:stateMachine:MLOpsStepFunction-026569106715"
       }
 ]
