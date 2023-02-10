@@ -8,6 +8,7 @@ FROM public.ecr.aws/lts/ubuntu:20.04
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
          wget \
          python3 \
+         python3-distutils \
          nginx \
          ca-certificates \
     && rm -rf /var/lib/apt/lists/*
