@@ -14,7 +14,7 @@ import traceback
 
 import pandas as pd
 
-from sklearn import tree
+#from sklearn import tree
 from ma3_model import MA3
 
 # These are the paths to where SageMaker mounts interesting things in your container.
