@@ -7,7 +7,7 @@ FROM public.ecr.aws/lts/ubuntu:20.04
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
          wget \
-         python \
+         python3.7 \
          nginx \
          ca-certificates \
     && rm -rf /var/lib/apt/lists/*
