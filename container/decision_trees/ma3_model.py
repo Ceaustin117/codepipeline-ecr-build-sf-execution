@@ -46,9 +46,11 @@ def MA3(df, target, date, flag):
     Returns:
         array: 3-point moving average forecast results equal to length of time series. 
     """
+    print("time to make horiz")
     horiz = df['flag'].mean().astype('int').astype('str')
-
+    print("time to train_test")
     train, test = train_test(df, date)
+    print("time to see if train[target] >=3")
     if len(train[target]) >= 3:
         model = ARIMA(train[target], order = (0,0,3)).fit()
         pred = np.array([x for x in model.predict(start = 0, end = (len(train) + (horizons[horiz]-1)))])

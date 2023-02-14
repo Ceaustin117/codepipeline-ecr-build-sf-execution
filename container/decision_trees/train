@@ -76,6 +76,7 @@ def train():
         print("!new columns")
         print(train_data.columns)
         print(train_data.dtypes)
+        print("time to make model")
         # Now use scikit-learn's decision tree classifier to train the model.3
         clf_pred,clf_model = MA3(train_data, 'bottles_sold', 'date', 'flag')
 
