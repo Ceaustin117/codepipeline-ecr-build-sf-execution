@@ -85,7 +85,9 @@ def train():
         clf_pred,clf_model = MA3(train_data, 'bottles_sold', 'date', 'flag')
 
         # save the model
+        print("open path to pickle")
         with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'w') as out:
+            print("pickle dump")
             pickle.dump(clf_model, out)
         print('Training complete.')
     except Exception as e:
