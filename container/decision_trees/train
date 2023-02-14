@@ -56,6 +56,9 @@ def train():
         print(train_data.dtypes)
         print("rename")
         train_data = train_data.rename(columns=str).rename(columns={'nan':'new_lbl'})
+        print("!Renamed COLUMNS")
+        print(train_data.columns)
+        print(train_data.dtypes)
         print("time to convert to date")
         train_data['date'] = pd.to_datetime(train_data['date'], errors='coerce')
         # labels are in the first column
