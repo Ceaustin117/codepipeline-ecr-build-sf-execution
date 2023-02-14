@@ -82,7 +82,7 @@ def train():
             if(column_name != 'date'):
                 train_data[column_name] = train_data[column_name].astype('int64')
         # Now use scikit-learn's decision tree classifier to train the model.3
-        clf_pred,clf_model = MA3(train_data, 'bottles_sold', 'date', 'flag')
+        clf_model = MA3(train_data, 'bottles_sold', 'date', 'flag')
 
         # save the model
         print("open path to pickle")
@@ -94,7 +94,7 @@ def train():
         # Write out an error file. This will be returned as the failureReason in the
         # DescribeTrainingJob result.
         trc = traceback.format_exc()
-        with open(os.path.join(output_path, 'failure'), 'w') as s:
+        with open(os.path.join(output_path, 'failure'), 'wb') as s:
             s.write('Exception during training: ' + str(e) + '\n' + trc)
         # Printing this causes the exception to be in the training job logs, as well.
         print('Exception during training: ' + str(e) + '\n' + trc, file=sys.stderr)

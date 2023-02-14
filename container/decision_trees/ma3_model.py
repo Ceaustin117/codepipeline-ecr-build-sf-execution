@@ -67,4 +67,4 @@ def MA3(df, target, date, flag):
         pred = np.mean(df[target])
 
     print("time to return pred,model")
-    return pred,model
+    return model
