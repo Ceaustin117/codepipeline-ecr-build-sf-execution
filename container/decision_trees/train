@@ -54,7 +54,7 @@ def train():
         print(train_data.columns)
         print(train_data.dtypes)
         print("time to convert to date")
-        train_data['date'] = pd.to_datetime(train_data['date'], errors='coerce'))
+        train_data['date'] = pd.to_datetime(train_data['date'], errors='coerce')
         # labels are in the first column
         #train_y = train_data.ix[:,0]
         #train_X = train_data.ix[:,1:]
