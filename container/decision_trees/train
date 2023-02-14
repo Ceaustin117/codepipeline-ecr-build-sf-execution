@@ -52,6 +52,7 @@ def train():
         print(train_data)
         print("COLUMNS")
         print(train_data.columns)
+        print(train_data.dtypes)
 
         # labels are in the first column
         #train_y = train_data.ix[:,0]
@@ -70,6 +71,9 @@ def train():
         #df = pd.read_csv("single_series_test.csv")hh
         train_data['date'] = pd.to_datetime(train_data['date'], format = '%Y-%m-%d')
         train_data['flag'] = 3
+        print("new columns")
+        print(train_data.columns)
+        print(train_data.dtypes)
         # Now use scikit-learn's decision tree classifier to train the model.3
         clf_pred,clf_model = MA3(train_data, 'bottles_sold', 'date', 'flag')
 
