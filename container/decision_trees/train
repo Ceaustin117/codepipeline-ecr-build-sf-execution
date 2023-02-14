@@ -50,7 +50,6 @@ def train():
         train_data = pd.concat(raw_data)
         train_data.columns=train_data.iloc[0]
         train_data=train_data.drop(train_data.index[[0]])
-        print(train_data)
         print("!COLUMNS")
         print(train_data.columns)
         print(train_data.dtypes)
@@ -79,10 +78,9 @@ def train():
         print("time to convert to date format")
         train_data['date'] = pd.to_datetime(train_data['date'], errors='coerce', format = '%Y-%m-%d')
         train_data['flag'] = 3
-        print("!new columns")
-        print(train_data.columns)
-        print(train_data.dtypes)
-        print("time to make model")
+        for column_name in train_data.columns:
+            if(column_name != 'date'):
+                train_data[column_name] = train_data[column_name].astype('int64')
         # Now use scikit-learn's decision tree classifier to train the model.3
         clf_pred,clf_model = MA3(train_data, 'bottles_sold', 'date', 'flag')
 

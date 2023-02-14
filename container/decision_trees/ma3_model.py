@@ -48,10 +48,10 @@ def MA3(df, target, date, flag):
     """
     print("time to make horiz")
     horiz = df['flag'].mean().astype('int').astype('str')
-    print("time to print all rows")
-    print(df.to_string())
     print("time to train_test")
     train, test = train_test(df, date)
+    print("train_columns")
+    print(train.columns)
     print("time to see if train[target] >=3")
     if len(train[target]) >= 3:
         print("time to get arima")
