@@ -86,6 +86,7 @@ def train():
         clf_model.save('decision-tree-model.pkl')
         # save the model
         print("open path to pickle")
+        print(model_path)
         with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'w') as out:
             print("pickle dump")
             pickle.dump(clf_model, out)
