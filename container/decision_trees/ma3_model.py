@@ -52,9 +52,13 @@ def MA3(df, target, date, flag):
     train, test = train_test(df, date)
     print("time to see if train[target] >=3")
     if len(train[target]) >= 3:
+        print("time to get arima")
         model = ARIMA(train[target], order = (0,0,3)).fit()
+        print("time to get pred")
         pred = np.array([x for x in model.predict(start = 0, end = (len(train) + (horizons[horiz]-1)))])
+        print("time for filler")
         filler = np.array([np.nan] * (len(test) - (horizons[horiz])))
+        print("time for append filler to pred")
         pred = np.append(pred, filler)
         # pred.fillna(np.mean(train[target]), inplace = True)
     else:
