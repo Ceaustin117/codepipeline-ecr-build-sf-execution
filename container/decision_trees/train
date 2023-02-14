@@ -54,7 +54,7 @@ def train():
         print(train_data.columns)
         print(train_data.dtypes)
         print("time to convert to date")
-        train_data['date'] = pd.to_datetime(train_data['date'])
+        train_data['date'] = pd.to_datetime(train_data['date'], errors='coerce'))
         # labels are in the first column
         #train_y = train_data.ix[:,0]
         #train_X = train_data.ix[:,1:]
@@ -71,7 +71,7 @@ def train():
         # 3ma model
         #df = pd.read_csv("single_series_test.csv")hh
         print("time to convert to date format")
-        train_data['date'] = pd.to_datetime(train_data['date'], format = '%Y-%m-%d')
+        train_data['date'] = pd.to_datetime(train_data['date'], errors='coerce', format = '%Y-%m-%d')
         train_data['flag'] = 3
         print("!new columns")
         print(train_data.columns)
