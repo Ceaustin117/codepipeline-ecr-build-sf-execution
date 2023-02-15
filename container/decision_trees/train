@@ -86,9 +86,10 @@ def train():
         print("open path to pickle")
         print(model_path)
         print(os.path.join(model_path, 'decision-tree-model.pkl'))
-        with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'wb') as out:
-            print("pickle dump")
-            pickle.dump(clf_model, out)
+        clf_model.save(os.path.join(model_path, 'decision-tree-model.pkl'))
+        #with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'w') as out:
+            #print("pickle dump")
+            #pickle.dump(clf_model, out)
         print('Training complete.')
     except Exception as e:
         # Write out an error file. This will be returned as the failureReason in the
