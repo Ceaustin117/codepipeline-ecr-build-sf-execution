@@ -83,10 +83,9 @@ def train():
                 train_data[column_name] = train_data[column_name].astype('int64')
         # Now use scikit-learn's decision tree classifier to train the model.3
         clf_model = MA3(train_data, 'bottles_sold', 'date', 'flag')
-        #clf_model.save(os.path.join(model_path, 'decision-tree-model.pkl'))
-        # save the model
         print("open path to pickle")
         print(model_path)
+        print(os.path.join(model_path, 'decision-tree-model.pkl'))
         with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'wb') as out:
             print("pickle dump")
             pickle.dump(clf_model, out)
