@@ -50,8 +50,8 @@ def MA3(df, target, date, flag):
     train, test = train_test(df, date)
     print('Inside 3ma Invoked training with {} records'.format(train.shape[0]))
     print(train)
-    print("train columns")
-    print(train.columns.to_string())
+    print('type of df')
+    print(type(df))
     print('type of train')
     print(type(train))
     if len(train[target]) >= 3:
