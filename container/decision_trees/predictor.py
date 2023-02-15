@@ -43,6 +43,7 @@ class ScoringService(object):
         print("get model")
         clf = cls.get_model()
         print("predict with model")
+        print("\n")
         print(input)
         return clf.predict(input)
 
