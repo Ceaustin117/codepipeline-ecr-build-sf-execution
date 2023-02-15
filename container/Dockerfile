@@ -13,7 +13,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
          ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Here we get all python packages.
+# Here we get all python packages..
 # There's substantial overlap between scipy and numpy that we eliminate by
 # linking them together. Likewise, pip leaves the install caches populated which uses
 # a significant amount of space. These optimizations save a fair amount of space in the
