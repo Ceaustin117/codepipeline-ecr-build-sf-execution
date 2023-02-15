@@ -10,6 +10,7 @@ from io import StringIO
 import sys
 import signal
 import traceback
+import numpy as np
 
 import flask
 
@@ -102,6 +103,10 @@ def transformation():
     print(data.iloc[2])
     data = data.reset_index(drop=True)
     print('Invoked with {} records'.format(data.shape[0]))
+    test_data = data.loc[data['date'] >= pd.to_datetime('12-01-2021', format='%m-%d-%Y')]
+    if len(test_data) == 0:
+        train_size = np.round((0.7*len(data)),0).astype('int')
+        test_data = data[0:train_size], test_data[train_size:]
     print("!!!!time to predict!!!")
     # Do the prediction
     predictions = ScoringService.predict(data)
