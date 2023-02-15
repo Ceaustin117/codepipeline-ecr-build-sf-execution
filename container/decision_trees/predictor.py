@@ -73,6 +73,8 @@ def transformation():
         return flask.Response(response='This predictor only supports CSV data', status=415, mimetype='text/plain')
     
     data = data.rename(columns=str).rename(columns={'nan':'new_lbl'})
+    data.columns=data.iloc[0]
+    data=data.drop(data.index[[0]])
     data['date'] = pd.to_datetime(data['date'], errors='coerce')
     data['date'] = pd.to_datetime(data['date'], errors='coerce', format = '%Y-%m-%d')
     data['flag'] = 3
