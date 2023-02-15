@@ -42,8 +42,8 @@ class ScoringService(object):
                 one prediction per row in the dataframe"""
         print("get model")
         clf = cls.get_model()
-        print("predict with model")
-        print("\n")
+        print("predict with model!")
+        print("\n\n\n")
         print(input)
         return clf.predict(input)
 
