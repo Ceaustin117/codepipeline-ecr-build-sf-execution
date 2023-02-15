@@ -84,7 +84,7 @@ def transformation():
     for column_name in data.columns:
         if(column_name != 'date'):
             data[column_name] = data[column_name].astype('int64')
-    print("data columns")
+    print("data columns!")
     print(data.dtypes)
     print('Invoked with {} records'.format(data.shape[0]))
     print("!!!!time to predict!!!")
