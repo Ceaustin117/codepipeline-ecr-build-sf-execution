@@ -72,7 +72,7 @@ def transformation():
         print("raw csv")
         print(data)
         s = StringIO(data)
-        data = pd.read_csv(s, header=None)
+        data = pd.read_csv(s, header=0)
     else:
         return flask.Response(response='This predictor only supports CSV data', status=415, mimetype='text/plain')
     
@@ -98,6 +98,8 @@ def transformation():
     print(data.iloc[0])
     print("row 2 after fixing")
     print(data.iloc[1])
+    print("row 3 after fixing")
+    print(data.iloc[2])
     print('Invoked with {} records'.format(data.shape[0]))
     print("!!!!time to predict!!!")
     # Do the prediction
@@ -105,7 +107,7 @@ def transformation():
 
     # Convert from numpy back to CSV
     out = StringIO()
-    pd.DataFrame({'results':predictions}).to_csv(out, header=False, index=False)
+    pd.DataFrame({'results':predictions}).to_csv(out, header=0, index=False)
     result = out.getvalue()
 
     return flask.Response(response=result, status=200, mimetype='text/csv')
