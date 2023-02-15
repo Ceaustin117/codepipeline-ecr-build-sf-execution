@@ -40,7 +40,9 @@ class ScoringService(object):
         Args:
             input (a pandas dataframe): The data on which to do the predictions. There will be
                 one prediction per row in the dataframe"""
+        print("get model")
         clf = cls.get_model()
+        print("predict with model")
         return clf.predict(input)
 
 # The flask app for serving predictions
