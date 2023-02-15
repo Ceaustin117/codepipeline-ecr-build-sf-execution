@@ -101,13 +101,14 @@ def transformation():
     print(data.iloc[1])
     print("row 3 after fixing")
     print(data.iloc[2])
-    data = data.reset_index(drop=True)
     print('Invoked with {} records'.format(data.shape[0]))
     test_data = data.loc[data['date'] >= pd.to_datetime('12-01-2021', format='%m-%d-%Y')]
     if len(test_data) == 0:
         train_size = np.round((0.7*len(data)),0).astype('int')
         test_data = data[0:train_size], test_data[train_size:]
     print("!!!!time to predict!!!")
+    print("using test_data")
+    print(test_data)
     # Do the prediction
     predictions = ScoringService.predict(test_data)
 
