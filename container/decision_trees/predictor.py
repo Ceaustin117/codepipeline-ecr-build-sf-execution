@@ -30,7 +30,7 @@ class ScoringService(object):
         if cls.model == None:
             print("time_to_decode_rb")
             with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'rb') as inp:
-                cls.model = pickle.loads(inp)
+                cls.model = pickle.load(inp)
         return cls.model
 
     @classmethod
