@@ -41,11 +41,7 @@ class ScoringService(object):
         Args:
             input (a pandas dataframe): The data on which to do the predictions. There will be
                 one prediction per row in the dataframe"""
-        print("get model")
         clf = cls.get_model()
-        print("predict with model!")
-        print("\n\n\n")
-        print(input)
         return clf.predict(input)
 
 # The flask app for serving predictions
@@ -71,44 +67,24 @@ def transformation():
     # Convert from CSV to pandas
     if flask.request.content_type == 'text/csv':
         data = flask.request.data.decode('utf-8')
-        print('???text/csv')
-        print("raw csv")
-        print(data)
         s = StringIO(data)
         data = pd.read_csv(s, header=0)
     else:
         return flask.Response(response='This predictor only supports CSV data', status=415, mimetype='text/plain')
     
-    print("data columns before fixing!")
-    print(data.columns.to_list())
-    print("data dtypes before fixing!")
-    print(data.dtypes)
-    print("row 1 before fixing")
-    print(data.iloc[0])
-    print("row 2 before fixing")
-    print(data.iloc[1])
     data = data.rename(columns=str).rename(columns={'nan':'new_lbl'})
     data['date'] = pd.to_datetime(data['date'], errors='coerce')
     data['date'] = pd.to_datetime(data['date'], errors='coerce', format = '%Y-%m-%d')
     data['flag'] = 3
-    print("data columns after fixing!")
-    print(data.columns.to_list())
-    print("data dtypes after fixing!")
-    print(data.dtypes)
-    print("row 1 after fixing")
-    print(data.iloc[0])
-    print("row 2 after fixing")
-    print(data.iloc[1])
-    print("row 3 after fixing")
-    print(data.iloc[2])
-    print('Invoked with {} records'.format(data.shape[0]))
     test_data = data.loc[data['date'] >= pd.to_datetime('12-01-2021', format='%m-%d-%Y')]
     if len(test_data) == 0:
         train_size = np.round((0.7*len(data)),0).astype('int')
         test_data = test_data[train_size:]
     print("!!!!time to predict!!!")
-    print("using test_data")
+    print("using_test_data\n\n\n")
     print(test_data)
+    print("test data type")
+    print(type(test_data))
     # Do the prediction
     predictions = ScoringService.predict(test_data)
 
