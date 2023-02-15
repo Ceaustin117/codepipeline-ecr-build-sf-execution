@@ -69,12 +69,14 @@ def transformation():
     if flask.request.content_type == 'text/csv':
         data = flask.request.data.decode('utf-8')
         print('???text/csv')
-        
+
         s = StringIO(data)
         data = pd.read_csv(s, header=None)
     else:
         return flask.Response(response='This predictor only supports CSV data', status=415, mimetype='text/plain')
     
+    print("data columns before fixing!")
+    print(data.dtypes)
     data.columns=data.iloc[0]
     data=data.drop(data.index[[0]])
     data = data.rename(columns=str).rename(columns={'nan':'new_lbl'})
