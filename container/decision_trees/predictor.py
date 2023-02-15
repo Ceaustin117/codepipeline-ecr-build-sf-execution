@@ -26,11 +26,11 @@ class ScoringService(object):
 
     @classmethod
     def get_model(cls):
-        """Get the model object for this instance, loading it if it's not already loaded.."""
+        """Get the model object for this instance, loading it if it's not already loaded."""
         if cls.model == None:
             print("time_to_decode_rb")
-            with open(os.path.join(model_path, 'decision-tree-model.pkl'), encoding='latin-1') as inp:
-                cls.model = pickle.load(inp)
+            with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'rb') as inp:
+                cls.model = pickle.load(inp,encoding="latin1")
         return cls.model
 
     @classmethod
