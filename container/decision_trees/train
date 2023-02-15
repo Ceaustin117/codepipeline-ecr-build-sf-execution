@@ -50,15 +50,7 @@ def train():
         train_data = pd.concat(raw_data)
         train_data.columns=train_data.iloc[0]
         train_data=train_data.drop(train_data.index[[0]])
-        print("!COLUMNS")
-        print(train_data.columns)
-        print(train_data.dtypes)
-        print("rename")
         train_data = train_data.rename(columns=str).rename(columns={'nan':'new_lbl'})
-        print("!Renamed COLUMNS")
-        print(train_data.columns)
-        print(train_data.dtypes)
-        print("time to convert to date")
         train_data['date'] = pd.to_datetime(train_data['date'], errors='coerce')
         # labels are in the first column
         #train_y = train_data.ix[:,0]
@@ -75,7 +67,6 @@ def train():
         #clf = clf.fit(train_X, train_y)
         # 3ma model
         #df = pd.read_csv("single_series_test.csv")hh
-        print("time to convert to date format")
         train_data['date'] = pd.to_datetime(train_data['date'], errors='coerce', format = '%Y-%m-%d')
         train_data['flag'] = 3
         for column_name in train_data.columns:
@@ -83,13 +74,8 @@ def train():
                 train_data[column_name] = train_data[column_name].astype('int64')
         # Now use scikit-learn's decision tree classifier to train the model.3
         clf_model = MA3(train_data, 'bottles_sold', 'date', 'flag')
-        print("open path to pickle wb")
-        print(model_path)
-        print(os.path.join(model_path, 'decision-tree-model.pkl'))
         with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'wb') as out:
-            print("pickle dump")
             pickle.dump(clf_model, out)
-        print('Training complete.')
     except Exception as e:
         # Write out an error file. This will be returned as the failureReason in the
         # DescribeTrainingJob result.

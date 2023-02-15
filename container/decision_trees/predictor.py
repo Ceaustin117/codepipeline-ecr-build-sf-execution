@@ -66,13 +66,25 @@ def transformation():
     # Convert from CSV to pandas
     if flask.request.content_type == 'text/csv':
         data = flask.request.data.decode('utf-8')
+        print('???text/csv')
         s = StringIO(data)
         data = pd.read_csv(s, header=None)
     else:
         return flask.Response(response='This predictor only supports CSV data', status=415, mimetype='text/plain')
-
+    
+    print("data columns")
+    print(data.columns)
+    data.columns=data.iloc[0]
+    data=data.drop(data.index[[0]])
+    data = data.rename(columns=str).rename(columns={'nan':'new_lbl'})
+    data['date'] = pd.to_datetime(data['date'], errors='coerce')
+    data['date'] = pd.to_datetime(data['date'], errors='coerce', format = '%Y-%m-%d')
+    data['flag'] = 3
+    for column_name in data.columns:
+        if(column_name != 'date'):
+            data[column_name] = data[column_name].astype('int64')
     print('Invoked with {} records'.format(data.shape[0]))
-
+    print("!!!!time to predict!!!")
     # Do the prediction
     predictions = ScoringService.predict(data)
 
