@@ -76,6 +76,8 @@ def transformation():
         return flask.Response(response='This predictor only supports CSV data', status=415, mimetype='text/plain')
     
     print("data columns before fixing!")
+    print(data.columns)
+    print("data dtypes before fixing!")
     print(data.dtypes)
     print("row 1 before fixing")
     print(data.iloc[0])
@@ -87,7 +89,9 @@ def transformation():
     data['date'] = pd.to_datetime(data['date'], errors='coerce')
     data['date'] = pd.to_datetime(data['date'], errors='coerce', format = '%Y-%m-%d')
     data['flag'] = 3
-    print("data columns!")
+    print("data columns after fixing!")
+    print(data.columns)
+    print("data dtypes after fixing!")
     print(data.dtypes)
     print('Invoked with {} records'.format(data.shape[0]))
     print("!!!!time to predict!!!")
