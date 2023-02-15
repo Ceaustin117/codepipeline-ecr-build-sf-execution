@@ -60,11 +60,11 @@ def ping():
 def transformation():
     """Do an inference on a single batch of data. In this sample server, we take data as CSV, convert
     it to a pandas data frame for internal use and then convert the predictions back to CSV (which really
-    just means one prediction per line, since there's a single column.
+    just means one prediction per line, since there's a single column..
     """
     data = None
 
-    # Convert from CSV to pandas
+    # Convert from CSV to pandas.
     if flask.request.content_type == 'text/csv':
         data = flask.request.data.decode('utf-8')
         s = StringIO(data)
@@ -85,8 +85,12 @@ def transformation():
     print(test_data)
     print("test data type")
     print(type(test_data))
+    fake_pred_data = np.array([
+    [0, 150, 'store', 'date', 'item', 'bottles_sold', 'flag'],
+    [1, 0, 2633, '2019-01-13', 34457, 84, 3]
+    [2, 1, 2633, '2019-01-20', 34457, 144, 3]])
     # Do the prediction
-    predictions = ScoringService.predict(test_data)
+    predictions = ScoringService.predict(fake_pred_data )
 
     # Convert from numpy back to CSV
     out = StringIO()
