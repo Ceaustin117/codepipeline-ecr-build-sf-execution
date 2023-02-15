@@ -77,6 +77,10 @@ def transformation():
     
     print("data columns before fixing!")
     print(data.dtypes)
+    print("row 1 before fixing")
+    print(data.iloc[0])
+    print("row 2 before fixing")
+    print(data.iloc[1])
     data.columns=data.iloc[0]
     data=data.drop(data.index[[0]])
     data = data.rename(columns=str).rename(columns={'nan':'new_lbl'})
