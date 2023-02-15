@@ -43,6 +43,7 @@ class ScoringService(object):
         print("get model")
         clf = cls.get_model()
         print("predict with model")
+        print(input)
         return clf.predict(input)
 
 # The flask app for serving predictions
