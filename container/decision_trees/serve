@@ -65,7 +65,7 @@ def start_server():
     sigterm_handler(nginx.pid, gunicorn.pid)
     print('Inference server exiting')
 
-# The main routine just invokes the start function.
+# The main routine just invokes gthe start function.
 
 if __name__ == '__main__':
     start_server()
