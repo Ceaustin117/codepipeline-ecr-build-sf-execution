@@ -109,7 +109,7 @@ def transformation():
         test_data = data[0:train_size], test_data[train_size:]
     print("!!!!time to predict!!!")
     # Do the prediction
-    predictions = ScoringService.predict(data)
+    predictions = ScoringService.predict(test_data)
 
     # Convert from numpy back to CSV
     out = StringIO()
