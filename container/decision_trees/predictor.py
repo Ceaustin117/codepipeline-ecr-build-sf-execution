@@ -93,6 +93,10 @@ def transformation():
     print(data.columns)
     print("data dtypes after fixing!")
     print(data.dtypes)
+    print("row 1 after fixing")
+    print(data.iloc[0])
+    print("row 2 after fixing")
+    print(data.iloc[1])
     print('Invoked with {} records'.format(data.shape[0]))
     print("!!!!time to predict!!!")
     # Do the prediction
