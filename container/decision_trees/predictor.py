@@ -73,7 +73,7 @@ def transformation():
         return flask.Response(response='This predictor only supports CSV data', status=415, mimetype='text/plain')
     
     print("data columns")
-    print(data.columns)
+    print(data.dtypes)
     data.columns=data.iloc[0]
     data=data.drop(data.index[[0]])
     data = data.rename(columns=str).rename(columns={'nan':'new_lbl'})
