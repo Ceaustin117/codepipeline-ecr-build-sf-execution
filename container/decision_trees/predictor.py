@@ -29,7 +29,7 @@ class ScoringService(object):
         """Get the model object for this instance, loading it if it's not already loaded."""
         if cls.model == None:
             print("time_to_decode_rb")
-            with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'rb') as inp:
+            with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'rb',encoding='utf-8') as inp:
                 cls.model = pickle.load(inp)
         return cls.model
 
@@ -66,7 +66,7 @@ def transformation():
     # Convert from CSV to pandas
     if flask.request.content_type == 'text/csv':
         data = flask.request.data.decode('utf-8')
-        s = StringIO.StringIO(data)
+        s = StringIO(data)
         data = pd.read_csv(s, header=None)
     else:
         return flask.Response(response='This predictor only supports CSV data', status=415, mimetype='text/plain')
@@ -77,7 +77,7 @@ def transformation():
     predictions = ScoringService.predict(data)
 
     # Convert from numpy back to CSV
-    out = StringIO.StringIO()
+    out = StringIO()
     pd.DataFrame({'results':predictions}).to_csv(out, header=False, index=False)
     result = out.getvalue()
 
