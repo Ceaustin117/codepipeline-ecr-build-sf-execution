@@ -26,7 +26,7 @@ class ScoringService(object):
 
     @classmethod
     def get_model(cls):
-        """Get the model object for this instance, loading it if it's not already loaded."""
+        """Get the model object for this instance, loading it if it's not already loaded.."""
         if cls.model == None:
             print("time_to_decode_rb")
             with open(os.path.join(model_path, 'decision-tree-model.pkl'), encoding='utf-8') as inp:
