@@ -77,7 +77,7 @@ def transformation():
     data.columns=data.iloc[0]
     data=data.drop(data.index[[0]])
     data = data.rename(columns=str).rename(columns={'nan':'new_lbl'})
-    data = data.rename(columns=str).rename(columns={0:'index_lbl'})
+    data = data.rename(columns={0:'index_lbl'})
     data['date'] = pd.to_datetime(data['date'], errors='coerce')
     data['date'] = pd.to_datetime(data['date'], errors='coerce', format = '%Y-%m-%d')
     data['flag'] = 3
