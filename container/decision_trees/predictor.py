@@ -99,6 +99,7 @@ def transformation():
     print(data.iloc[1])
     print("row 3 after fixing")
     print(data.iloc[2])
+    data = data.reset_index(drop=True)
     print('Invoked with {} records'.format(data.shape[0]))
     print("!!!!time to predict!!!")
     # Do the prediction
