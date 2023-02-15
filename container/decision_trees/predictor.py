@@ -72,8 +72,6 @@ def transformation():
     else:
         return flask.Response(response='This predictor only supports CSV data', status=415, mimetype='text/plain')
     
-    print("data columns")
-    print(data.dtypes)
     data.columns=data.iloc[0]
     data=data.drop(data.index[[0]])
     data = data.rename(columns=str).rename(columns={'nan':'new_lbl'})
@@ -83,6 +81,8 @@ def transformation():
     for column_name in data.columns:
         if(column_name != 'date'):
             data[column_name] = data[column_name].astype('int64')
+    print("data columns")
+    print(data.dtypes)
     print('Invoked with {} records'.format(data.shape[0]))
     print("!!!!time to predict!!!")
     # Do the prediction
