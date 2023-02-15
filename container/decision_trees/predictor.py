@@ -83,6 +83,8 @@ def transformation():
     data['flag'] = 3
     for column_name in data.columns:
         if(column_name != 'date'):
+            print("column type will change")
+            print(column_name)
             data[column_name] = data[column_name].astype('int64')
     print("data columns!")
     print(data.dtypes)
