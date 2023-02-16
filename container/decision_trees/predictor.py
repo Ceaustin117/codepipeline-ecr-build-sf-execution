@@ -42,7 +42,7 @@ class ScoringService(object):
             input (a pandas dataframe): The data on which to do the predictions. There will be
                 one prediction per row in the dataframe"""
         clf = cls.get_model()
-        return clf.predict(input)
+        return clf.predict(start = 0, end = 3)
 
 # The flask app for serving predictions
 app = flask.Flask(__name__)

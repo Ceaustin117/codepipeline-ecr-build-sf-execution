@@ -60,6 +60,8 @@ def MA3(df, target, date, flag):
     print(train.index)
     print("train target")
     print(train[target])
+    print("(len(train) + (horizons[horiz]-1))")
+    print((len(train) + (horizons[horiz]-1)))
     if len(train[target]) >= 3:
         model = ARIMA(train[target], order = (0,0,3)).fit()
         pred = np.array([x for x in model.predict(start = 0, end = (len(train) + (horizons[horiz]-1)))])
