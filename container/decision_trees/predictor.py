@@ -98,6 +98,7 @@ def transformation():
     fake_pred_data = pd.DataFrame(data, columns=[150, 'store', 'date', 'item', 'bottles_sold', 'flag'])
     print("fake_pred_data!\n\n")
     print(fake_pred_data)
+    fake_pred_data = fake_pred_data.loc[fake_pred_data['date'] < pd.to_datetime('12-01-2021', format='%m-%d-%Y')]
     # [0, 150, 'store', 'date', 'item', 'bottles_sold', 'flag'],
     # [1, 0, 2633, '2019-01-13', 34457, 84, 3]
     # [2, 1, 2633, '2019-01-20', 34457, 144, 3]])
