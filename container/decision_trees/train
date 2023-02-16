@@ -16,6 +16,7 @@ import pandas as pd
 
 #from sklearn import tree
 from ma3_model import MA3
+from optimize_arima_model import optimize_arima
 
 # These are the paths to where SageMaker mounts interesting things in your container.
 
@@ -74,7 +75,7 @@ def train():
                 train_data[column_name] = train_data[column_name].astype('int64')
     
         # Now use scikit-learn's decision tree classifier to train the model.3
-        clf_model = MA3(train_data, 'bottles_sold', 'date', 'flag')
+        clf_model = optimize_arima(train_data,'date','bottles_sold', 'flag')
         with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'wb') as out:
             pickle.dump(clf_model, out)
     except Exception as e:

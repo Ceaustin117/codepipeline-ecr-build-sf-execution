@@ -29,7 +29,6 @@ class ScoringService(object):
     def get_model(cls):
         """Get the model object for this instance, loading it if it's not already loaded."""
         if cls.model == None:
-            print("time_to_decode_rb")
             with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'rb') as inp:
                 cls.model = pickle.load(inp,encoding="latin1")
         return cls.model
@@ -86,42 +85,17 @@ def transformation():
     if len(test_data) == 0:
         train_size = np.round((0.7*len(data)),0).astype('int')
         test_data = test_data[train_size:]
-    print("!!!!time to predict!!!")
-    print("using_test_data\n\n\n")
-    print(test_data)
-    print("test data type")
-    print(type(test_data))
     
     # initialize list of lists
     try:
         data = [[1,0, 2633, '2019-01-13', 34457, 84, 3], [ 2,1, 2633, '2019-01-20', 34457, 144, 3]]
         fake_pred_data = pd.DataFrame(data, columns=[0,150, 'store', 'date', 'item', 'bottles_sold', 'flag'])
         fake_pred_data['date'] = pd.to_datetime(fake_pred_data['date'], errors='coerce')
-        print("fake pred data")
-        print(fake_pred_data)
-        print("fake_pred_data.dtypes")
-        print(fake_pred_data.dtypes)
-        print("fake_pred_data.index")
-        print(fake_pred_data.index)
         fake_pred_data.index = list(fake_pred_data.index)
-        print("!!!fake_pred_data.index after conversion")
-        print(fake_pred_data.index)
-        print("!!!fake_pred_data after conversion")
-        print(fake_pred_data)
-        
         fake_pred_data = fake_pred_data.loc[fake_pred_data['date'] < pd.to_datetime('12-01-2021', format='%m-%d-%Y')]
         fake_pred_data.index = np.arange(1, len(fake_pred_data) + 1)
-        print("!!!fake_pred_data after loc")
-        print(fake_pred_data)
-        print("!!!fake_pred_data['bottles_sold']")
-        print(fake_pred_data['bottles_sold'])
-        # [0, 150, 'store', 'date', 'item', 'bottles_sold', 'flag'],
-        # [1, 0, 2633, '2019-01-13', 34457, 84, 3]
-        # [2, 1, 2633, '2019-01-20', 34457, 144, 3]])
-        # Do the prediction
         print("time to predict")
         predictions = ScoringService.predict(fake_pred_data['bottles_sold'])
-
         # Convert from numpy back to CSV
         out = StringIO()
         pd.DataFrame({'results':predictions}).to_csv(out, header=0, index=False)
