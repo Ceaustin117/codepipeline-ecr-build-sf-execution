@@ -93,26 +93,28 @@ def transformation():
     print(type(test_data))
     
     # initialize list of lists
-    
-    data = [[0, 2633, '2019-01-13', 34457, 84, 3], [ 1, 2633, '2019-01-20', 34457, 144, 3]]
-    fake_pred_data = pd.DataFrame(data, columns=[150, 'store', 'date', 'item', 'bottles_sold', 'flag'])
-    fake_pred_data['date'] = pd.to_datetime(fake_pred_data['date'], errors='coerce')
-    print("fake_pred_data!\n\n")
-    print("\n")
-    print(" ")
-    print(" ")
-    print(fake_pred_data)
-    fake_pred_data = fake_pred_data.loc[fake_pred_data['date'] < pd.to_datetime('12-01-2021', format='%m-%d-%Y')]
-    # [0, 150, 'store', 'date', 'item', 'bottles_sold', 'flag'],
-    # [1, 0, 2633, '2019-01-13', 34457, 84, 3]
-    # [2, 1, 2633, '2019-01-20', 34457, 144, 3]])
-    # Do the prediction
-    print("time to predict")
-    predictions = ScoringService.predict(fake_pred_data)
+    try:
+        data = [[0, 2633, '2019-01-13', 34457, 84, 3], [ 1, 2633, '2019-01-20', 34457, 144, 3]]
+        fake_pred_data = pd.DataFrame(data, columns=[150, 'store', 'date', 'item', 'bottles_sold', 'flag'])
+        fake_pred_data['date'] = pd.to_datetime(fake_pred_data['date'], errors='coerce')
+        with pd.option_context('display.max_rows', None,
+                        'display.max_columns', None,
+                        'display.precision', 3,
+                        ): print(fake_pred_data)
+        fake_pred_data = fake_pred_data.loc[fake_pred_data['date'] < pd.to_datetime('12-01-2021', format='%m-%d-%Y')]
+        # [0, 150, 'store', 'date', 'item', 'bottles_sold', 'flag'],
+        # [1, 0, 2633, '2019-01-13', 34457, 84, 3]
+        # [2, 1, 2633, '2019-01-20', 34457, 144, 3]])
+        # Do the prediction
+        print("time to predict")
+        predictions = ScoringService.predict(fake_pred_data)
 
-    # Convert from numpy back to CSV
-    out = StringIO()
-    pd.DataFrame({'results':predictions}).to_csv(out, header=0, index=False)
-    result = out.getvalue()
+        # Convert from numpy back to CSV
+        out = StringIO()
+        pd.DataFrame({'results':predictions}).to_csv(out, header=0, index=False)
+        result = out.getvalue()
+    except Exception as e:
+        print('Exception during training: ' + str(e))
+
 
     return flask.Response(response=result, status=200, mimetype='text/csv')
