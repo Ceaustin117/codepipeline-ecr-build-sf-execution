@@ -48,7 +48,7 @@ def MA3(df, target, date, flag):
     """
     horiz = df['flag'].mean().astype('int').astype('str')
     train = train_test(df, date)
-    print('Inside 3ma Invoked training with {} records'.format(train.shape[0]))
+    print('Inside 3ma Invoked training')
     print(train)
     print('type of df..')
     print(type(df))

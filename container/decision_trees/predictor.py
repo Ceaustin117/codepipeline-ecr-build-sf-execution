@@ -110,6 +110,7 @@ def transformation():
         print(fake_pred_data)
         
         fake_pred_data = fake_pred_data.loc[fake_pred_data['date'] < pd.to_datetime('12-01-2021', format='%m-%d-%Y')]
+        fake_pred_data.index = np.arange(1, len(fake_pred_data) + 1)
         print("!!!fake_pred_data after loc")
         print(fake_pred_data)
         print("!!!fake_pred_data['bottles_sold']")
