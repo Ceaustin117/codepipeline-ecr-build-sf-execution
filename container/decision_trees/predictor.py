@@ -101,6 +101,9 @@ def transformation():
         print(fake_pred_data.dtypes)
         print("fake_pred_data.index")
         print(fake_pred_data.index)
+        fake_pred_data.index = list(fake_pred_data.index.index)
+        print(fake_pred_data.index)
+        print("!!!fake_pred_data.index after conversion")
         with pd.option_context('display.max_rows', None,
                         'display.max_columns', None,
                         'display.precision', 3,
