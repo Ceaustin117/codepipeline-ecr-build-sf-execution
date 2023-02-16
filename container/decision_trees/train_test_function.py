@@ -17,4 +17,4 @@ def train_test(df, date):
     if len(train) == 0:
         train_size = np.round((0.7*len(df)),0).astype('int')
         train = df[0:train_size]
-    return train, test
+    return train
