@@ -47,18 +47,19 @@ def MA3(df, target, date, flag):
         array: 3-point moving average forecast results equal to length of time series. 
     """
     horiz = df['flag'].mean().astype('int').astype('str')
-    train, test = train_test(df, date)
+    train = train_test(df, date)
     print('Inside 3ma Invoked training with {} records'.format(train.shape[0]))
     print(train)
     print('type of df..')
     print(type(df))
     print('type of train')
     print(type(train))
+    print('dtypes of train')
+    print(train.dtypes)
     if len(train[target]) >= 3:
         model = ARIMA(train[target], order = (0,0,3)).fit()
         pred = np.array([x for x in model.predict(start = 0, end = (len(train) + (horizons[horiz]-1)))])
-        filler = np.array([np.nan] * (len(test) - (horizons[horiz])))
-        pred = np.append(pred, filler)
+
         # pred.fillna(np.mean(train[target]), inplace = True)
     else:
         pred = np.mean(df[target])

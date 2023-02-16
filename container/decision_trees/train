@@ -76,7 +76,7 @@ def train():
         # Now use scikit-learn's decision tree classifier to train the model.3
         clf_model = MA3(train_data, 'bottles_sold', 'date', 'flag')
         print("initial summary")
-        print(clf_model.summary.as_csv())
+        print(clf_model.summary.as_csv)
         print("initial params")
         print(clf_model.normalized_cov_params)
         with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'wb') as out:
