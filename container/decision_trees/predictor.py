@@ -94,7 +94,7 @@ def transformation():
     
     # initialize list of lists
     
-    data = [[0, 2633, '2019-01-13', 34457, 84, 3], [2, 1, 2633, '2019-01-20', 34457, 144, 3]]
+    data = [[0, 2633, '2019-01-13', 34457, 84, 3], [ 1, 2633, '2019-01-20', 34457, 144, 3]]
     fake_pred_data = pd.DataFrame(data, columns=[150, 'store', 'date', 'item', 'bottles_sold', 'flag'])
     print("fake_pred_data")
     print(fake_pred_data)
