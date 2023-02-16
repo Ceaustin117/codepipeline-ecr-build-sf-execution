@@ -75,14 +75,10 @@ def train():
     
         # Now use scikit-learn's decision tree classifier to train the model.3
         clf_model = MA3(train_data, 'bottles_sold', 'date', 'flag')
-        print("initial design")
-        print(clf_model.initial_design)
-        print("model names")
-        print(clf_model.model_names)
-        print("param names")
-        print(clf_model.param_names)
-        print("start params")
-        print(clf_model.start_params)
+        print("initial summary")
+        print(clf_model.summary())
+        print("initial params")
+        print(clf_model.normalized_cov_params())
         with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'wb') as out:
             pickle.dump(clf_model, out)
     except Exception as e:
