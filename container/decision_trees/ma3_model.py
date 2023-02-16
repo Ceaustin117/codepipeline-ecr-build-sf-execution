@@ -54,7 +54,7 @@ def MA3(df, target, date, flag):
     print(type(df))
     print('type of train')
     print(type(train))
-    print('dtypes of train')
+    print('train dtypes')
     print(train.dtypes)
     if len(train[target]) >= 3:
         model = ARIMA(train[target], order = (0,0,3)).fit()
