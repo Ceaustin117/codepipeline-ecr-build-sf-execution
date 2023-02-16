@@ -112,12 +112,14 @@ def transformation():
         fake_pred_data = fake_pred_data.loc[fake_pred_data['date'] < pd.to_datetime('12-01-2021', format='%m-%d-%Y')]
         print("!!!fake_pred_data after loc")
         print(fake_pred_data)
+        print("!!!fake_pred_data['bottles_sold']")
+        print(fake_pred_data['bottles_sold'])
         # [0, 150, 'store', 'date', 'item', 'bottles_sold', 'flag'],
         # [1, 0, 2633, '2019-01-13', 34457, 84, 3]
         # [2, 1, 2633, '2019-01-20', 34457, 144, 3]])
         # Do the prediction
         print("time to predict")
-        predictions = ScoringService.predict(fake_pred_data)
+        predictions = ScoringService.predict(fake_pred_data['bottles_sold'])
 
         # Convert from numpy back to CSV
         out = StringIO()
