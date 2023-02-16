@@ -97,17 +97,17 @@ def transformation():
         data = [[1,0, 2633, '2019-01-13', 34457, 84, 3], [ 1, 2633, '2019-01-20', 34457, 144, 3]]
         fake_pred_data = pd.DataFrame(data, columns=[0,150, 'store', 'date', 'item', 'bottles_sold', 'flag'])
         fake_pred_data['date'] = pd.to_datetime(fake_pred_data['date'], errors='coerce')
+        print("fake pred data")
+        print(fake_pred_data)
         print("fake_pred_data.dtypes")
         print(fake_pred_data.dtypes)
         print("fake_pred_data.index")
         print(fake_pred_data.index)
         fake_pred_data.index = list(fake_pred_data.index)
-        print(fake_pred_data.index)
         print("!!!fake_pred_data.index after conversion")
-        with pd.option_context('display.max_rows', None,
-                        'display.max_columns', None,
-                        'display.precision', 3,
-                        ): print(fake_pred_data)
+        print(fake_pred_data.index)
+        print("!!!fake_pred_data after conversion")
+        print(fake_pred_data)
         
         fake_pred_data = fake_pred_data.loc[fake_pred_data['date'] < pd.to_datetime('12-01-2021', format='%m-%d-%Y')]
         # [0, 150, 'store', 'date', 'item', 'bottles_sold', 'flag'],
