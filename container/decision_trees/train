@@ -82,7 +82,7 @@ def train():
         "seasonal_periods" : [2,4,12,26,52], #52 weeks in a year, same # of seasonal periods consistently confirmed by STL decomp auto-period detection
         "initialization_method" : ['estimated', 'heuristic']
         }
-        # Now use scikit-learn's decision tree classifier to train the model.3
+        # Now use scikit-learn's decision tree classifier to train the model
         clf_model = optimize_ets_model(train_data,'bottles_sold','date', 'Fcast_flag', ETS_params['error'], ETS_params['trend'], ETS_params['dampened_trend'], ETS_params['seasonal'], ETS_params['seasonal_periods'], ETS_params['initialization_method'])
         #clf_model = MA3(train_data, 'bottles_sold', 'date', 'flag')
         with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'wb') as out:
