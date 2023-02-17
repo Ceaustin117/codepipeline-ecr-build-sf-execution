@@ -35,6 +35,7 @@ class ScoringService(object):
 
     @classmethod
     def predict(cls, input):
+        print("inside predict")
         """For the input, do the predictions and return them.
 
         Args:
@@ -66,12 +67,8 @@ def transformation():
     # Convert from CSV to pandas.
     if flask.request.content_type == 'text/csv':
         data = flask.request.data.decode('utf-8')
-        print("raw data \n")
-        print(data)
         s = StringIO(data)
         data = pd.read_csv(s, header=None)
-        print("initital data df")
-        print(data)
     else:
         return flask.Response(response='This predictor only supports CSV data', status=415, mimetype='text/plain')
     
