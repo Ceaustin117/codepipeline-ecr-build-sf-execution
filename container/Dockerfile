@@ -20,7 +20,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 # image, which reduces start up time.
 RUN wget https://bootstrap.pypa.io/pip/2.7/get-pip.py && python3 get-pip.py 
 
-RUN  pip install numpy pandas statsmodels flask gevent gunicorn  && rm -rf /root/.cache
+RUN  pip install numpy pandas statsmodels sklearn flask gevent gunicorn  && rm -rf /root/.cache
 
 # Set some environment variables. PYTHONUNBUFFERED keeps Python from buffering our standard
 # output stream, which means that logs can be delivered to the user quickly. PYTHONDONTWRITEBYTECODE
