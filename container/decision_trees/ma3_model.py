@@ -44,7 +44,7 @@ def MA3(df, target, date, flag):
         date (str): date column name found in df
 
     Returns:
-        array: 3-point moving average forecast results equal to length of time series. 
+        array: 3-point moving average forecast results equal to length of time series. .
     """
     horiz = df['flag'].mean().astype('int').astype('str')
     train = train_test(df, date)
