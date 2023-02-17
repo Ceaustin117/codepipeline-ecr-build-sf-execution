@@ -53,11 +53,11 @@ def optimize_arima(df, date, target, flag):
 
     model_order = (p_q[0], d, p_q[1])
     model = ARIMA(np.asarray(train[target].values.astype('float64')), order = model_order, enforce_stationarity=True)
-    # model_fit = model.fit()
-    # predictions = np.array([x for x in model_fit.predict(start = 0, end = (len(train) + (horizons[horiz]-1)))])
+    model_fit = model.fit()
+    predictions = np.array([x for x in model_fit.predict(start = 0, end = (len(train) + (horizons[horiz]-1)))])
     # filler = np.array([np.nan] * (len(test) - (horizons[horiz])))
     # predictions = np.append(predictions, filler)
-    return model
+    return model_fit
 
 # if __name__ == '__main__':
 #     print('Test')
