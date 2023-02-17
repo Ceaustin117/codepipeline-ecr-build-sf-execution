@@ -17,7 +17,7 @@ import pandas as pd
 #from sklearn import tree
 from ma3_model import MA3
 from optimize_arima_model import optimize_arima
-from optimize_ets_model import optimize_ets_model
+from optimize_ets_model import optimize_ETS
 
 # These are the paths to where SageMaker mounts interesting things in your container.
 
@@ -83,7 +83,7 @@ def train():
         "initialization_method" : ['estimated', 'heuristic']
         }
         # Now use scikit-learn's decision tree classifier to train the model
-        clf_model = optimize_ets_model(train_data,'bottles_sold','date', 'Fcast_flag', ETS_params['error'], ETS_params['trend'], ETS_params['dampened_trend'], ETS_params['seasonal'], ETS_params['seasonal_periods'], ETS_params['initialization_method'])
+        clf_model = optimize_ETS(train_data,'bottles_sold','date', 'Fcast_flag', ETS_params['error'], ETS_params['trend'], ETS_params['dampened_trend'], ETS_params['seasonal'], ETS_params['seasonal_periods'], ETS_params['initialization_method'])
         #clf_model = MA3(train_data, 'bottles_sold', 'date', 'flag')
         with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'wb') as out:
             pickle.dump(clf_model, out)
