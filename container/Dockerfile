@@ -17,7 +17,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 # There's substantial overlap between scipy and numpy that we eliminate by
 # linking them together. Likewise, pip leaves the install caches populated which uses
 # a significant amount of space. These optimizations save a fair amount of space in the
-# image, which reduces start up time.
+# image, which reduces start up time..
 RUN wget https://bootstrap.pypa.io/pip/2.7/get-pip.py && python3 get-pip.py 
 
 RUN  pip install numpy pandas statsmodels sklearn flask gevent gunicorn  && rm -rf /root/.cache
