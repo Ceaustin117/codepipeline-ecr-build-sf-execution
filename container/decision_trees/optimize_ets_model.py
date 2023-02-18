@@ -78,7 +78,7 @@ def optimize_ETS(data, target, date, flag, errors, trends, dampened_trends, seas
         print statement: Prints combination of parameters used, corresponding RMSE and MAPE. Prints best combination after all iterations have been run
     """
     horiz = data[flag].mean().astype('int').astype('str')
-    best_params, best_rmse = ['add','add','n','add','1','n'], float('inf')
+    best_params, best_rmse = ['add','add','n','add',[2,4,12,26,52],'n'], float('inf')
     for e in errors:
         for t in trends:
             for d_t in dampened_trends:
