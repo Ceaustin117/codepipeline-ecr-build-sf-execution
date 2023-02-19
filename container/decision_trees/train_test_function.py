@@ -16,5 +16,5 @@ def train_test(df, date):
     train = df.loc[df[date] < pd.to_datetime('12-01-2021', format='%m-%d-%Y')]
     if len(train) == 0:
         train_size = np.round((0.7*len(df)),0).astype('int')
-        train = df[0:train_size]
-    return train
+        train, test = df[0:train_size], df[train_size:]
+    return train, test

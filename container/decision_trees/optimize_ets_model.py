@@ -96,8 +96,9 @@ def optimize_ETS(data, target, date, flag, errors, trends, dampened_trends, seas
     train = train_test(data, date)
     model = ETSModel(train[target], error=best_params[0], trend=best_params[1], damped_trend=best_params[2], seasonal=best_params[3], seasonal_periods=best_params[4], initialization_method=best_params[5])
     model_fit = model.fit(disp=0)
-    predictions = np.array([x for x in model_fit.predict(start = 0, end = (len(train) + (horizons[horiz]-1)))])
-    filler = np.array([np.nan] * (len(test) - (horizons[horiz])))
-    predictions = np.append(predictions, filler)
+    #predictions = np.array([x for x in model_fit.predict(start = 0, end = (len(train) + (horizons[horiz]-1)))])
+    #filler = np.array([np.nan] * (len(test) - (horizons[horiz])))
+    #predictions = np.append(predictions, filler)
 
-    return best_params, predictions
+    #return best_params, predictions
+    return model_fit
