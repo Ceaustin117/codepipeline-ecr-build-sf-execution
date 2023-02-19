@@ -92,7 +92,7 @@ def train():
         with open(os.path.join(model_path, 'decision-tree-model.pkl'), 'wb') as out:
             pickle.dump(clf_model, out)
     except Exception as e:
-        # Write out an error file. This will be returned as the failureReason in the
+        # Write out an error file. This will be returned as the failureReason ,.,..in the
         # DescribeTrainingJob result.
         trc = traceback.format_exc()
         with open(os.path.join(output_path, 'failure'), 'w') as s:
