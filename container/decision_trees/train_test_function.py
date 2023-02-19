@@ -13,7 +13,7 @@ def train_test(df, date):
         pandas DataFrame: train set of years 2019- end of Nov. 2021
         pandas DataFrame: test set of Dec. 2021 - Present
     """
-    train = df.loc[df[date] < pd.to_datetime('12-01-2021', format='%m-%d-%Y')]
+    train, test = df.loc[df[date] < pd.to_datetime('12-01-2021', format='%m-%d-%Y')], df.loc[df[date] >= pd.to_datetime('12-01-2021', format='%m-%d-%Y')]
     if len(train) == 0:
         train_size = np.round((0.7*len(df)),0).astype('int')
         train, test = df[0:train_size], df[train_size:]
