@@ -85,7 +85,7 @@ def train():
         store_col = 'store'
         item_col = 'item'
         target_col = 'bottles_sold'
-        # Now use scikit-learn's decision tree classifier to train the model
+        # Now use scikit-learn's decision tree classifier to train the model.
         # had some issues with some Etl_params and had to manually enter some without the optimization
         clf_model = optimize_ETS(train_data,'bottles_sold','date', 'flag',ETS_params['error'], ETS_params['trend'], ETS_params['dampened_trend'], ETS_params['seasonal'], ETS_params['seasonal_periods'], ETS_params['initialization_method'])
         #clf_model = MA3(train_data, 'bottles_sold', 'date', 'flag').
