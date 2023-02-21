@@ -107,15 +107,20 @@ Resources:
                 - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 026569106715.dkr.ecr.us-east-2.amazonaws.com
                 - dt=`date '+%m-%d-%Y-%H-%M-%S'`
                 - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${dt}"                
-                - IMAGE_URI="${REPOSITORY_URI}:${TAG}"
+                - IMAGE_URI="${REPOSITORY_URI}:${TAG}"             
+                - IMAGE_URI2="${REPOSITORY_URI}:${TAG}:2"
                 - echo "IMAGE_URI=${IMAGE_URI}"
             build:
               commands:
                 - cd container
                 - docker build --tag "$IMAGE_URI" .
+                - cd ..
+                - cd container2
+                - docker build --tag "$IMAGE_URI2" .
             post_build:
               commands:
                 - docker push "$IMAGE_URI"
+                - docker push "$IMAGE_URI2"
                 - cd ..
                 - printf '{"commitID":"%s","imageUri":"%s"}' "$TAG" "$IMAGE_URI" > sf_start_params.json
           artifacts:
