@@ -110,6 +110,7 @@ Resources:
                 - IMAGE_URI="${REPOSITORY_URI}:${TAG}"             
                 - IMAGE_URL="${REPOSITORY_URI}:${TAG}-2"
                 - echo "IMAGE_URI=${IMAGE_URI}"
+                - echo "IMAGE_URL=${IMAGE_URL}"
             build:
               commands:
                 - cd container
