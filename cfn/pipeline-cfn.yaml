@@ -108,7 +108,7 @@ Resources:
                 - dt=`date '+%m-%d-%Y-%H-%M-%S'`
                 - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${dt}"                
                 - IMAGE_URI="${REPOSITORY_URI}:${TAG}"             
-                - IMAGE_URI2="${REPOSITORY_URI}:${TAG}-2"
+                - IMAGE_URL="${REPOSITORY_URI}:${TAG}-2"
                 - echo "IMAGE_URI=${IMAGE_URI}"
             build:
               commands:
@@ -116,7 +116,7 @@ Resources:
                 - docker build --tag "$IMAGE_URI" .
                 - cd ..
                 - cd container2
-                - docker build --tag "$IMAGE_URI2" .
+                - docker build --tag "$IMAGE_URL" .
             post_build:
               commands:
                 - docker push "$IMAGE_URI"
