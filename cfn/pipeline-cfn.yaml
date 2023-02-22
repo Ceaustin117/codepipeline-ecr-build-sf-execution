@@ -121,7 +121,7 @@ Resources:
             post_build:
               commands:
                 - docker push "$IMAGE_URI"
-                - docker push "$IMAGE_URI2"
+                - docker push "$IMAGE_URL"
                 - cd ..
                 - printf '{"commitID":"%s","imageUri":"%s"}' "$TAG" "$IMAGE_URI" > sf_start_params.json
                 - printf '{"commitID-2":"%s","imageUrl":"%s"}' "$TAG" "$IMAGE_URL" > sf_start_params2.json
