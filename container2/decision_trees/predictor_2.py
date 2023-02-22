@@ -83,7 +83,7 @@ def transformation():
         train_size = np.round((0.7*len(data)),0).astype('int')
         test_data = test_data[train_size:]
     
-    # initialize list of lists
+    # initialize list of lists..
     try:
         data = [[1,0, 2633, '2019-01-13', 34457, 84, 3], [ 2,1, 2633, '2019-01-20', 34457, 144, 3]]
         fake_pred_data = pd.DataFrame(data, columns=[0,150, 'store', 'date', 'item', 'bottles_sold', 'flag'])
