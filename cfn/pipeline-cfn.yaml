@@ -106,8 +106,9 @@ Resources:
                 - printenv | less
                 - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 026569106715.dkr.ecr.us-east-2.amazonaws.com
                 - dt=`date '+%m-%d-%Y-%H-%M-%S'`
+                - dtf= `'02-23-2023-06-45-04'`
                 - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${dt}"  
-                - TAC="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-$12345"                 
+                - TAC="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${dtf}"                 
                 - IMAGE_URI="${REPOSITORY_URI}:${TAG}"             
                 - IMAGE_URL="${REPOSITORY_URI}:${TAC}"
                 - echo "IMAGE_URI=${IMAGE_URI}"
