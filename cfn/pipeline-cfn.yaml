@@ -107,7 +107,7 @@ Resources:
                 - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 026569106715.dkr.ecr.us-east-2.amazonaws.com
                 - dt=`date '+%m-%d-%Y-%H-%M-%S'`
                 - dtf=`date '+%m-%d-%Y-%H-%M-%S-%N'`
-                - dtk=`date +'%d/%m/%Y-%H:%M:%S' --date="$givenDate 10 minutes"`
+                - dtk=`date '+%m-%d-%Y-%H-%M'`
                 - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${dt}"  
                 - TAC="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${dtf}" 
                 - TAK="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${dtk}"                 
