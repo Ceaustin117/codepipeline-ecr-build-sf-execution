@@ -37,7 +37,7 @@ def optimize_arima(df, date, target, flag):
     horiz = df[flag].mean().astype('int').astype('str')
 
     #train/test split
-    train = train_test(df, date)
+    train,test  = train_test(df, date)
 
     #Determine non-seasonal differencing necessary (d)
     d = 0
