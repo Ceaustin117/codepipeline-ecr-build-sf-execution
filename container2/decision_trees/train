@@ -74,17 +74,6 @@ def train():
         for column_name in train_data.columns:
             if(column_name != 'date'):
                 train_data[column_name] = train_data[column_name].astype('int64')
-        ETS_params = {
-        "error" : ['add','mul'],
-        "trend" : ['add', 'mul', None],
-        "dampened_trend" : [True, False],
-        "seasonal" : ['add', 'mul', None],
-        "seasonal_periods" : [2,4,12,26,52], #52 weeks in a year, same # of seasonal periods consistently confirmed by STL decomp auto-period detection
-        "initialization_method" : ['estimated', 'heuristic']
-        }
-        store_col = 'store'
-        item_col = 'item'
-        target_col = 'bottles_sold'
         # Now use scikit-learn's decision tree classifier to train the model...
         # had some issues with some Etl_params and had to manually enter some without the optimization
         clf_model = MA3(train_data,'bottles_sold','date', 'flag')
