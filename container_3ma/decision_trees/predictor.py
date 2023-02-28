@@ -34,7 +34,7 @@ class ScoringService(object):
         return cls.model
 
     @classmethod
-    def predict(cls, input):
+    def predict(cls):
         print("inside predict")
         """For the input, do the predictions and return them.
 
@@ -72,17 +72,6 @@ def transformation():
     else:
         return flask.Response(response='This predictor only supports CSV data', status=415, mimetype='text/plain')
     
-    data = data.rename(columns=str).rename(columns={'nan':'new_lbl'})
-    data.columns=data.iloc[0]
-    data=data.drop(data.index[[0]])
-    data['date'] = pd.to_datetime(data['date'], errors='coerce')
-    data['date'] = pd.to_datetime(data['date'], errors='coerce', format = '%Y-%m-%d')
-    data['flag'] = 3
-    test_data = data.loc[data['date'] >= pd.to_datetime('12-01-2021', format='%m-%d-%Y')]
-    if len(test_data) == 0:
-        train_size = np.round((0.7*len(data)),0).astype('int')
-        test_data = test_data[train_size:]
-    
     # initialize list of lists
     try:
         data = [[1,0, 2633, '2019-01-13', 34457, 84, 3], [ 2,1, 2633, '2019-01-20', 34457, 144, 3]]
@@ -92,7 +81,7 @@ def transformation():
         fake_pred_data = fake_pred_data.loc[fake_pred_data['date'] < pd.to_datetime('12-01-2021', format='%m-%d-%Y')]
         fake_pred_data.index = np.arange(1, len(fake_pred_data) + 1)
         print("time to predict")
-        predictions = ScoringService.predict(fake_pred_data['bottles_sold'])
+        predictions = ScoringService.predict()
         # Convert from numpy back to CSV
         out = StringIO()
         pd.DataFrame({'results':predictions}).to_csv(out, header=0, index=False)
