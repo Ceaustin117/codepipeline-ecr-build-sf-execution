@@ -36,6 +36,7 @@ class ScoringService(object):
     @classmethod
     def predict(cls,data_list):
         print("inside predict")
+        print(data_lsist)
         """For the input, do the predictions and return them.
 
         Args:
