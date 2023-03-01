@@ -34,7 +34,7 @@ class ScoringService(object):
         return cls.model
 
     @classmethod
-    def predict(cls,data):
+    def predict(cls,data_list):
         print("inside predict")
         """For the input, do the predictions and return them.
 
@@ -42,7 +42,7 @@ class ScoringService(object):
             input (a pandas dataframe): The data on which to do the predictions. There will be
                 one prediction per row in the dataframe"""
         clf = cls.get_model()
-        return clf.predict(start = 0, end = 3)
+        return clf.predict(start = int(data_list[0].strip()), end = int(data_list[1].strip()))
 
 # The flask app for serving predictions
 app = flask.Flask(__name__)
@@ -68,7 +68,7 @@ def transformation():
     if flask.request.content_type == 'text/csv':
         data = flask.request.data.decode('utf-8')
         s = StringIO(data)
-        data_list = s.getvalue().split(",").strip()
+        data_list = s.getvalue().split(",")
         # data = pd.read_csv(s, header=None)
     else:
         return flask.Response(response='This predictor only supports CSV data', status=415, mimetype='text/plain')
