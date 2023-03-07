@@ -104,8 +104,8 @@ Resources:
             pre_build:
               commands:
                 - printenv | less
-                - train_3ma= "$true
-                - train_arima= "$true"
+                - train_3ma= "true
+                - train_arima= "true"
                 - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 026569106715.dkr.ecr.us-east-2.amazonaws.com
                 - dt=`date '+%m-%d-%Y-%H-%M-%S-%N'`
                 - dtf=`date '+%m-%d-%Y-%H-%M-%S'`
