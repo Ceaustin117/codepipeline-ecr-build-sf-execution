@@ -107,26 +107,32 @@ Resources:
                 - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 026569106715.dkr.ecr.us-east-2.amazonaws.com
                 - dt=`date '+%m-%d-%Y-%H-%M-%S'`
                 - dtf=`date '+%m-%d-%Y-%H-%M-%S-%N'`
+                - dtk=`date '+%m-%d-%Y-%H-%M'`
                 - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${dt}"  
-                - TAC="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${dtf}"                 
+                - TAC="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${dtf}" 
+                - TAK="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${dtk}"                 
                 - IMAGE_URI="${REPOSITORY_URI}:${TAG}"             
                 - IMAGE_URL="${REPOSITORY_URI}:${TAC}"        
+                - IMAGE_URK="${REPOSITORY_URI}:${TAK}"
                 - echo "IMAGE_URI=${IMAGE_URI}"
                 - echo "IMAGE_URL=${IMAGE_URL}"
+                - echo "IMAGE_URL=${IMAGE_URK}"
             build:
               commands:
                 - cd container_3ma
                 - docker build --tag "$IMAGE_URI" .
                 - cd ..
-                - cd container_arima
+                - cd container_ets
                 - docker build --tag "$IMAGE_URL" .
                 - cd ..
+                - cd container_arima
+                - docker build --tag "$IMAGE_URK" .
             post_build:
               commands:
                 - docker push "$IMAGE_URI"
                 - docker push "$IMAGE_URL"
                 - cd ..
-                - printf '{"commitID":"%s","imageUri":"%s", "commitIL":"%s","imageUrL":"%s", "train3ma":"%s","trainArima":"%s"}' "$TAG" "$IMAGE_URI" "$TAC" "$IMAGE_URL" "true" "true"> sf_start_params.json
+                - printf '{"commitID":"%s","imageUri":"%s", "commitIL":"%s","imageUrL":"%s", "commitIK":"%s","imageUrK":"%s", "train3ma":"%s","trainArima":"%s"}' "$TAG" "$IMAGE_URI" "$TAC" "$IMAGE_URL" "$TAK" "$IMAGE_URK" "true" "true"> sf_start_params.json
           artifacts:
             files: sf_start_params.json
       Environment:
