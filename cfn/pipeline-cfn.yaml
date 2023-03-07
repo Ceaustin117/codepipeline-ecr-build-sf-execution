@@ -108,9 +108,9 @@ Resources:
                 - dt=`date '+%m-%d-%Y-%H-%M-%S'`
                 - dtf=`date '+%m-%d-%Y-%H-%M-%S-%N'`
                 - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${dt}"  
-                - TAC="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${dtf}"                 
+                - TAC="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${dtf}"               
                 - IMAGE_URI="${REPOSITORY_URI}:${TAG}"             
-                - IMAGE_URL="${REPOSITORY_URI}:${TAC}"        
+                - IMAGE_URL="${REPOSITORY_URI}:${TAC}"  
                 - echo "IMAGE_URI=${IMAGE_URI}"
                 - echo "IMAGE_URL=${IMAGE_URL}"
             build:
