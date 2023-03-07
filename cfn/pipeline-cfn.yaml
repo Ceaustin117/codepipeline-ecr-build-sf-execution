@@ -104,17 +104,21 @@ Resources:
             pre_build:
               commands:
                 - printenv | less
-                - train_3ma= "true"
-                - train_arima= "true"
                 - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 026569106715.dkr.ecr.us-east-2.amazonaws.com
-                - dt=`date '+%m-%d-%Y-%H-%M-%S-%N'`
+                - dt=`date '+%m-%d-%Y-%H-%M-%S'`
                 - dtf=`date '+%m-%d-%Y-%H-%M-%S'`
-                - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${dt}"  
-                - TAC="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${dtf}"               
+                - dtk=`date '+%m-%d-%Y-%H-%M-%S'`
+                - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-3ma-${dt}"  
+                - TAC="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-arima-${dtf}" 
+                - TAK="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-ets-${dtk}"                 
                 - IMAGE_URI="${REPOSITORY_URI}:${TAG}"             
-                - IMAGE_URL="${REPOSITORY_URI}:${TAC}"  
+                - IMAGE_URL="${REPOSITORY_URI}:${TAC}"        
+                - IMAGE_URK="${REPOSITORY_URI}:${TAK}"
                 - echo "IMAGE_URI=${IMAGE_URI}"
                 - echo "IMAGE_URL=${IMAGE_URL}"
+                - echo "IMAGE_URL=${IMAGE_URK}"
+                - train_3ma = "true"
+                - train_arima = "true"
             build:
               commands:
                 - cd container_3ma
@@ -122,12 +126,15 @@ Resources:
                 - cd ..
                 - cd container_arima
                 - docker build --tag "$IMAGE_URL" .
+                - cd ..
+                - cd container_ets
+                - docker build --tag "$IMAGE_URK" .
             post_build:
               commands:
                 - docker push "$IMAGE_URI"
                 - docker push "$IMAGE_URL"
                 - cd ..
-                - printf '{"commitID":"%s","imageUri":"%s", "commitIL":"%s","imageUrL":"%s", "train3ma":"%s","trainArima":"%s"}' "$TAG" "$IMAGE_URI" "$TAC" "$IMAGE_URL" "${train_3ma}" "${train_arima}" > sf_start_params.json
+                - printf '{"commitID":"%s","imageUri":"%s", "commitIL":"%s","imageUrL":"%s", "commitIK":"%s","imageUrK":"%s", "train3ma":"%s","trainArima":"%s"}' "$TAG" "$IMAGE_URI" "$TAC" "$IMAGE_URL" "$TAK" "$IMAGE_URK" train_3ma train_arima "true"> sf_start_params.json
           artifacts:
             files: sf_start_params.json
       Environment:
