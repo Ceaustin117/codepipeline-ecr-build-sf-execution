@@ -111,7 +111,7 @@ Resources:
                 - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 026569106715.dkr.ecr.us-east-2.amazonaws.com
                 - TRAIN_3MA= "$(echo true)"
                 - TRAIN_ARIMA= "$(echo true)"
-                - dz =`true`
+                - dz=`true`
                 - TDZ="${dz}"
                 - TDF="${dz}"
                 - dt=`date '+%m-%d-%Y-%H-%M-%S'`
