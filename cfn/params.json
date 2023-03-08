@@ -1,4 +1,11 @@
-[
+[   {
+      "ParameterKey": "Train3maFlag",
+      "ParameterValue": "true"
+    },
+    {
+      "ParameterKey": "TrainArimaFlag",
+      "ParameterValue": "true"
+    },
     {
       "ParameterKey": "GitHubRepo",
       "ParameterValue": "codepipeline-ecr-build-sf-execution"
