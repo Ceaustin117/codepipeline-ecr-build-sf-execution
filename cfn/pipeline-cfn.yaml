@@ -122,7 +122,8 @@ Resources:
                 - IMAGE_URK="${REPOSITORY_URI}:${TAK}"
                 - echo "IMAGE_URI=${IMAGE_URI}"
                 - echo "IMAGE_URL=${IMAGE_URL}"
-                - echo "IMAGE_URL=${IMAGE_URK}"
+                - echo "$train_3ma"
+                - echo "$train_arima"
             build:
               commands:
                 - cd container_3ma
@@ -138,7 +139,7 @@ Resources:
                 - docker push "$IMAGE_URI"
                 - docker push "$IMAGE_URL"
                 - cd ..
-                - printf '{"commitID":"%s","imageUri":"%s", "commitIL":"%s","imageUrL":"%s", "commitIK":"%s","imageUrK":"%s", "train3ma":"%s","trainArima":"%s"}' "$TAG" "$IMAGE_URI" "$TAC" "$IMAGE_URL" "$TAK" "$IMAGE_URK" "$train_3ma" "$train_arima"> sf_start_params.json
+                - printf '{"commitID":"%s","imageUri":"%s", "commitIL":"%s","imageUrL":"%s", "commitIK":"%s","imageUrK":"%s", "train3ma": train_3ma,"trainArima": train_arima}' "$TAG" "$IMAGE_URI" "$TAC" "$IMAGE_URL" "$TAK" "$IMAGE_URK"> sf_start_params.json
           artifacts:
             files: sf_start_params.json
       Environment:
