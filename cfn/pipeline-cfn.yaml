@@ -117,7 +117,7 @@ Resources:
                 - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-3ma-${dt}"  
                 - TAC="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-arima-${dtf}" 
                 - TAK="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-ets-${dtk}" 
-                - TAD="true-${dtk}"                
+                - TAD="true"                
                 - IMAGE_URI="${REPOSITORY_URI}:${TAG}"             
                 - IMAGE_URL="${REPOSITORY_URI}:${TAC}"        
                 - IMAGE_URK="${REPOSITORY_URI}:${TAK}"
