@@ -137,7 +137,7 @@ Resources:
                 - docker push "$IMAGE_URI"
                 - docker push "$IMAGE_URL"
                 - cd ..
-                - printf '{"commitID":"%s","imageUri":"%s", "commitIL":"%s","imageUrL":"%s", "commitIK":"%s","imageUrK":"%s", "train3ma":"%s","trainArima":"%s"}' "$TAG" "$IMAGE_URI" "$TAC" "$IMAGE_URL" "$TAK" "$IMAGE_URK" "$TRAIN_3MA" "$TRAIN_ARIMA"> sf_start_params.json
+                - printf '{"commitID":"%s","imageUri":"%s", "commitIL":"%s","imageUrL":"%s", "commitIK":"%s","imageUrK":"%s", "train3ma":"%s","trainArima":"%s"}' "$TAG" "$IMAGE_URI" "$TAC" "$IMAGE_URL" "$TAK" "$IMAGE_URK" "$IMAGE_URK" "$IMAGE_URK"> sf_start_params.json
           artifacts:
             files: sf_start_params.json
       Environment:
