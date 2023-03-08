@@ -111,6 +111,9 @@ Resources:
                 - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 026569106715.dkr.ecr.us-east-2.amazonaws.com
                 - TRAIN_3MA= "$(echo true)"
                 - TRAIN_ARIMA= "$(echo true)"
+                - dz =`true`
+                - TDZ="${dz}"
+                - TDF="${dz}"
                 - dt=`date '+%m-%d-%Y-%H-%M-%S'`
                 - dtf=`date '+%m-%d-%Y-%H-%M-%S'`
                 - dtk=`date '+%m-%d-%Y-%H-%M-%S'`
@@ -137,7 +140,7 @@ Resources:
                 - docker push "$IMAGE_URI"
                 - docker push "$IMAGE_URL"
                 - cd ..
-                - printf '{"commitID":"%s","imageUri":"%s", "commitIL":"%s","imageUrL":"%s", "commitIK":"%s","imageUrK":"%s", "train3ma":"%s","trainArima":"%s"}' "$TAG" "$IMAGE_URI" "$TAC" "$IMAGE_URL" "$TAK" "$IMAGE_URK" "$TRAIN_3MA" "$TRAIN_ARIMA"> sf_start_params.json
+                - printf '{"commitID":"%s","imageUri":"%s", "commitIL":"%s","imageUrL":"%s", "commitIK":"%s","imageUrK":"%s", "train3ma":"%s","trainArima":"%s"}' "$TAG" "$IMAGE_URI" "$TAC" "$IMAGE_URL" "$TAK" "$IMAGE_URK" "$TDZ" "$TDF"> sf_start_params.json
           artifacts:
             files: sf_start_params.json
       Environment:
