@@ -116,7 +116,8 @@ Resources:
                 - dtk=`date '+%m-%d-%Y-%H-%M-%S'`
                 - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-3ma-${dt}"  
                 - TAC="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-arima-${dtf}" 
-                - TAK="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-ets-${dtk}"              
+                - TAK="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-ets-${dtk}" 
+                - TAD="true-${dtk}"                
                 - IMAGE_URI="${REPOSITORY_URI}:${TAG}"             
                 - IMAGE_URL="${REPOSITORY_URI}:${TAC}"        
                 - IMAGE_URK="${REPOSITORY_URI}:${TAK}"
@@ -137,7 +138,7 @@ Resources:
                 - docker push "$IMAGE_URI"
                 - docker push "$IMAGE_URL"
                 - cd ..
-                - printf '{"commitID":"%s","imageUri":"%s", "commitIL":"%s","imageUrL":"%s", "commitIK":"%s","imageUrK":"%s", "train3ma":"%s","trainArima":"%s"}' "$TAG" "$IMAGE_URI" "$TAC" "$IMAGE_URL" "$TAK" "$IMAGE_URK" "$IMAGE_URK" "$IMAGE_URK"> sf_start_params.json
+                - printf '{"commitID":"%s","imageUri":"%s", "commitIL":"%s","imageUrL":"%s", "commitIK":"%s","imageUrK":"%s", "train3ma":"%s","trainArima":"%s"}' "$TAG" "$IMAGE_URI" "$TAC" "$IMAGE_URL" "$TAK" "$IMAGE_URK" "$TAD" "$IMAGE_URK"> sf_start_params.json
           artifacts:
             files: sf_start_params.json
       Environment:
