@@ -1,29 +1,34 @@
-[   {
-      "ParameterKey": "Train3maFlag",
-      "ParameterValue": "true"
-    },
-    {
-      "ParameterKey": "TrainArimaFlag",
-      "ParameterValue": "true"
-    },
-    {
-      "ParameterKey": "GitHubRepo",
-      "ParameterValue": "codepipeline-ecr-build-sf-execution"
-    },
-    {
-        "ParameterKey": "GitHubBranch",
-        "ParameterValue": "main"
-      },
-      {
-        "ParameterKey": "GitHubToken",
-        "ParameterValue": "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"
-      },
-      {
-        "ParameterKey": "GitHubUser",
-        "ParameterValue": "ceaustin117"
-      },
-      {
-        "ParameterKey": "MlOpsStepFunctionArn",
-        "ParameterValue": "arn:aws:states:us-east-2:026569106715:stateMachine:MLOpsStepFunction-026569106715"
-      }
+[
+  {
+    "ParameterKey": "Train3maFlag",
+    "ParameterValue": "true"
+  },
+  {
+    "ParameterKey": "TrainArimaFlag",
+    "ParameterValue": "true"
+  },
+  {
+    "ParameterKey": "TrainEtsFlag",
+    "ParameterValue": "true"
+  },
+  {
+    "ParameterKey": "GitHubRepo",
+    "ParameterValue": "codepipeline-ecr-build-sf-execution"
+  },
+  {
+    "ParameterKey": "GitHubBranch",
+    "ParameterValue": "main"
+  },
+  {
+    "ParameterKey": "GitHubToken",
+    "ParameterValue": "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"
+  },
+  {
+    "ParameterKey": "GitHubUser",
+    "ParameterValue": "ceaustin117"
+  },
+  {
+    "ParameterKey": "MlOpsStepFunctionArn",
+    "ParameterValue": "arn:aws:states:us-east-2:026569106715:stateMachine:MLOpsStepFunction-026569106715"
+  }
 ]
