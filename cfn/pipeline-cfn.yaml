@@ -109,8 +109,8 @@ Resources:
               commands:
                 - printenv | less
                 - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 026569106715.dkr.ecr.us-east-2.amazonaws.com
-                - train_3ma= 'true'
-                - train_arima= 'true'
+                - TRAIN_3MA= "$(echo true)"
+                - TRAIN_ARIMA= "$(echo true)"
                 - dt=`date '+%m-%d-%Y-%H-%M-%S'`
                 - dtf=`date '+%m-%d-%Y-%H-%M-%S'`
                 - dtk=`date '+%m-%d-%Y-%H-%M-%S'`
