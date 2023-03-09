@@ -116,9 +116,11 @@ Resources:
                 - dt=`date '+%m-%d-%Y-%H-%M-%S'`
                 - dtf=`date '+%m-%d-%Y-%H-%M-%S'`
                 - dtk=`date '+%m-%d-%Y-%H-%M-%S'`
+                
                 - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-3ma-${dt}"  
                 - TAC="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-arima-${dtf}" 
                 - TAK="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-ets-${dtk}" 
+
                 - TAD="${TRAIN3MAFLAG}"
                 - TAB="${TRAINARIMAFLAG}"
                 - IMAGE_URI="${REPOSITORY_URI}:${TAG}"             
