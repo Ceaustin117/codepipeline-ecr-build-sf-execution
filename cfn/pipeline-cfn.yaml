@@ -116,7 +116,7 @@ Resources:
                 - dt=`date '+%m-%d-%Y-%H-%M-%S'`
                 - dtf=`date '+%m-%d-%Y-%H-%M-%S'`
                 - dtk=`date '+%m-%d-%Y-%H-%M-%S'`
-                
+
                 - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-3ma-${dt}"  
                 - TAC="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-arima-${dtf}" 
                 - TAK="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-ets-${dtk}" 
@@ -142,6 +142,7 @@ Resources:
               commands:
                 - docker push "$IMAGE_URI"
                 - docker push "$IMAGE_URL"
+                - docker push "$IMAGE_URK"
                 - cd ..
                 - printf '{"commitID":"%s","imageUri":"%s", "commitIL":"%s","imageUrL":"%s", "commitIK":"%s","imageUrK":"%s", "train3ma":"%s","trainArima":"%s"}' "$TAG" "$IMAGE_URI" "$TAC" "$IMAGE_URL" "$TAK" "$IMAGE_URK" "$TAD" "$TAB"> sf_start_params.json
           artifacts:
